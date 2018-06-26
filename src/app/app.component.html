@@ -1,0 +1,43 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <h1>
+        {{ title }}
+    </h1>
+</div>
+
+<div class="example-wrapper">
+    <kendo-dropdownlist 
+        [(ngModel)]="selectedEmployee"
+        [defaultItem]="defaultItem"
+        [data]="employees"
+        [textField]="'text'"
+        [valueField]="'value'" >
+    </kendo-dropdownlist>
+    <p>Select report date:</p>
+    <kendo-datepicker
+        [(value)]="selectedDate"
+    ></kendo-datepicker>
+   <p><button kendoButton 
+        [primary]="true"
+        (click)= "selectionChange($event)" >
+        Submit
+        </button>
+    </p> 
+</div>
+
+<p></p>
+
+<tr-viewer #reportviewer
+    [containerStyle]="viewerContainerStyle"
+    [serviceUrl]="'http://localhost/ReportingRestServiceCors/api/reports'"
+    [reportSource]="{
+        report: 'Employee Sales Summary.trdp',
+        parameters: {}
+    }"
+    [viewMode]="'INTERACTIVE'"
+    [scaleMode]="'SPECIFIC'"
+    [scale]="1.0">
+</tr-viewer>
+
+
+
