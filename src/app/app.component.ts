@@ -8,7 +8,7 @@ import { TelerikReportViewerComponent } from '@progress/telerik-angular-report-v
 })
 export class AppComponent {
 
-  @ViewChild("reportviewer") reportViewer: TelerikReportViewerComponent;
+  @ViewChild("reportviewer") reportViewer: TelerikReportViewerComponent | undefined;
   title = 'Telerik Reporting Angular Report Viewer';
 
   public defaultItem: { text: string, value: number } = { text: "Select employee...", value: null };
@@ -31,12 +31,12 @@ export class AppComponent {
   };
 
   public selectionChange(): void {   
-      var reportSource = this.reportViewer.getReportSource();
+      var reportSource = this.reportViewer!.getReportSource();
       // console.log(reportSource.parameters);
       let params = reportSource.parameters;    
       params.Employee = this.selectedEmployee.value; 
       params.ReportDate = this.selectedDate;   
       reportSource.parameters = params;  
-      this.reportViewer.setReportSource(reportSource);    
+      this.reportViewer!.setReportSource(reportSource);    
   }
 }
